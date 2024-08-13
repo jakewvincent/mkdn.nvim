@@ -18,12 +18,11 @@
     2. [⚙️  Advanced configuration](#%EF%B8%8F--advanced-configuration)
         1. [🎨 Configuration options](#-configuration-options)
         2. [🔮 Completion setup](#-completion-setup)
-4. [🔍 Usage](#-usage)
-    1. [🛠️ Commands & mappings](#%EF%B8%8F-commands--mappings)
-    2. [🔌 API](#-api)
-5. [🤝 Contributing](#-contributing)
-6. [🔢 Version information](#-version-information)
-7. [🔗 Related projects](#-related-projects)
+4. [🛠️ Commands & mappings](#%EF%B8%8F-commands--mappings)
+5. [🔌 API](#-api)
+6. [🤝 Contributing](#-contributing)
+7. [🔢 Version information](#-version-information)
+8. [🔗 Related projects](#-related-projects)
 
 <!-- panvimdoc-ignore-end -->
 
@@ -990,12 +989,7 @@ cmp.setup({
 >
 > To prevent this, make sure you write sensible transformation functions, preferably using it for folder organization. The other solution is to do a full text search in all the files for links.
 
-## 🔍 Usage
-
-1. [🛠️ Commands & mappings](#-commands-mappings)
-2. [🔌 API](#-api)
-
-### 🛠️ Commands & mappings
+## 🛠️ Commands & mappings
 
 Below are descriptions of the user commands defined by Mkdnflow. For the default mappings to these commands, see the `mappings = ...` section of [🎨 Configuration options](#-configuration-options).
 
@@ -1006,7 +1000,7 @@ Below are descriptions of the user commands defined by Mkdnflow. For the default
 > If using [nvim-cmp](https://github.com/hrsh7th/nvim-cmp), consider using using the mapping with a fallback, as shown here: [*cmp-mapping*](https://github.com/hrsh7th/nvim-cmp/blob/bba6fb67fdafc0af7c5454058dfbabc2182741f4/doc/cmp.txt#L238)
 > If using an autopair plugin that automtically maps `<CR>` (e.g. [nvim-autopairs](https://github.com/windwp/nvim-autopairs)), see if it provides a way to disable its `<CR>` mapping (e.g. nvim-autopairs allows you to disable that mapping by adding `map_cr = false` to the table passed to its setup function).
 
-### 🔌 API
+## 🔌 API
 
 1. [Initialization](#initialization)
 2. [Link management](#link-management)
@@ -1023,16 +1017,16 @@ Below are descriptions of the user commands defined by Mkdnflow. For the default
 
 `Mkdnflow` provides a range of Lua functions that can be called directly to manipulate markdown files, navigate through buffers, manage links, and more. Below are the primary functions available:
 
-#### Initialization
+### Initialization
 
-##### `require('mkdnflow').setup(config)` <!-- panvimdoc-sub-comment `require('mkdnflow').setup(config)`~ -->
+#### `require('mkdnflow').setup(config)` <!-- panvimdoc-sub-comment `require('mkdnflow').setup(config)`~ -->
 
 Initializes the plugin with the provided configuration. See [⚙️  Advanced configuration](#%EF%B8%8F--advanced-configuration). If called with an empty table, the default configuration is used.
 
 * **Parameters**:
     * `config`: (table) Configuration table containing various settings such as filetypes, modules, mappings, and more.
 
-##### `require('mkdnflow').forceStart(opts)` <!-- panvimdoc-sub-comment `require('mkdnflow').forceStart(opts)`~ -->
+#### `require('mkdnflow').forceStart(opts)` <!-- panvimdoc-sub-comment `require('mkdnflow').forceStart(opts)`~ -->
 
 Similar to setup, but forces the initialization of the plugin regardless of the current buffer's filetype.
 
@@ -1040,9 +1034,9 @@ Similar to setup, but forces the initialization of the plugin regardless of the 
     * `opts`: (table) Table of options.
         * `opts[1]`: (boolean) Whether to attempt initialization silently (`true`) or not (`false`).
 
-#### Link management
+### Link management
 
-##### `require('mkdnflow').links.createLink(args)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.createLink(args)`~ -->
+#### `require('mkdnflow').links.createLink(args)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.createLink(args)`~ -->
 
 Creates a markdown link from the word under the cursor or visual selection.
 
@@ -1050,7 +1044,7 @@ Creates a markdown link from the word under the cursor or visual selection.
     * `args`: (table) Arguments to customize link creation.
         * `from_clipboard`: (boolean) If true, use the system clipboard content as the link source.
 
-##### `require('mkdnflow').links.followLink(args)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.followLink(args)`~ -->
+#### `require('mkdnflow').links.followLink(args)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.followLink(args)`~ -->
 
 Follows the link under the cursor, opening the corresponding file, URL, or directory.
 
@@ -1060,22 +1054,22 @@ Follows the link under the cursor, opening the corresponding file, URL, or direc
         * `anchor`: (string|nil) An anchor, either one in the current buffer (in which case `path` will be `nil`), or one in the file referred to in `path`.
         * `range`: (boolean|nil) Whether a link should be created from a visual selection range. This is only relevant if `create_on_follow_failure` is `true` (see config for `links` module), there is no link under the cursor, and there is currently a visual selection that needs to be made into a link.
 
-##### `require('mkdnflow').links.destroyLink()` <!-- panvimdoc-sub-comment `require('mkdnflow').links.destroyLink()`~ -->
+#### `require('mkdnflow').links.destroyLink()` <!-- panvimdoc-sub-comment `require('mkdnflow').links.destroyLink()`~ -->
 
 Destroys the link under the cursor, replacing it with plain text.
 
-##### `require('mkdnflow').links.tagSpan()` <!-- panvimdoc-sub-comment `require('mkdnflow').links.tagSpan()`~ -->
+#### `require('mkdnflow').links.tagSpan()` <!-- panvimdoc-sub-comment `require('mkdnflow').links.tagSpan()`~ -->
 
 Tags a visual selection as a span, useful for adding attributes to specific text segments.
 
-##### `require('mkdnflow').links.getLinkUnderCursor(col)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.getLinkUnderCursor(col)`~ -->
+#### `require('mkdnflow').links.getLinkUnderCursor(col)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.getLinkUnderCursor(col)`~ -->
 
 Returns the link under the cursor at the specified column.
 
 * **Parameters:**
     * `col`: (number|nil) The column position to check for a link. The current cursor position is used if this is not specified.
 
-##### `require('mkdnflow').links.getLinkPart(link_table, part)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.getLinkPart(link_table, part)`~ -->
+#### `require('mkdnflow').links.getLinkPart(link_table, part)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.getLinkPart(link_table, part)`~ -->
 
 Retrieves a specific part of a link, such as the source or the text.
 
@@ -1083,14 +1077,14 @@ Retrieves a specific part of a link, such as the source or the text.
     * `link_table`: (table) The table containing link details, as provided by `require('mkdnflow').links.getLinkUnderCursor()`.
     * `part`: (string|nil) The part of the link to retrieve (one of `'source'`, `'name'`, or `'anchor'`). Default: `'source'`.
 
-##### `require('mkdnflow').links.getBracketedSpanPart(part)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.getBracketedSpanPart(part)`~ -->
+#### `require('mkdnflow').links.getBracketedSpanPart(part)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.getBracketedSpanPart(part)`~ -->
 
 Retrieves a specific part of a bracketed span.
 
 * **Parameters:**
     * `part`: (string|nil) The part of the span to retrieve (one of `'text'` or `'attr'`). Default: `'attr'`.
 
-##### `require('mkdnflow').links.hasUrl(string, to_return, col)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.hasUrl(string, to_return, col)`~ -->
+#### `require('mkdnflow').links.hasUrl(string, to_return, col)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.hasUrl(string, to_return, col)`~ -->
 
 Checks if a given string contains a URL and optionally returns the URL.
 
@@ -1099,14 +1093,14 @@ Checks if a given string contains a URL and optionally returns the URL.
     * `to_return`: (string) The part to return (e.g., "url").
     * `col`: (number) The column position to check.
 
-##### `require('mkdnflow').links.transformPath(text)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.transformPath(text)`~ -->
+#### `require('mkdnflow').links.transformPath(text)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.transformPath(text)`~ -->
 
 Transforms the given text according to the default or user-supplied explicit transformation function.
 
 * **Parameters:**
     * `text`: (string) The text to transform.
 
-##### `require('mkdnflow').links.formatLink(text, source, part)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.formatLink(text, source, part)`~ -->
+#### `require('mkdnflow').links.formatLink(text, source, part)` <!-- panvimdoc-sub-comment `require('mkdnflow').links.formatLink(text, source, part)`~ -->
 
 Creates a formatted link with whatever is provided.
 
@@ -1118,13 +1112,13 @@ Creates a formatted link with whatever is provided.
         * `1`: Return the text part of the link.
         * `2`: Return the source part of the link.
 
-#### Link & path handling
+### Link and path handling
 
-##### `require('mkdnflow').paths.moveSource()` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.moveSource()`~ -->
+#### `require('mkdnflow').paths.moveSource()` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.moveSource()`~ -->
 
 Moves the source file of a link to a new location, updating the link accordingly.
 
-##### `require('mkdnflow').paths.handlePath(path, anchor)` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.handlePath(path, anchor)`~ -->
+#### `require('mkdnflow').paths.handlePath(path, anchor)` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.handlePath(path, anchor)`~ -->
 
 Handles all 'following' behavior for a given path, potentially opening it or performing other actions based on the type.
 
@@ -1132,7 +1126,7 @@ Handles all 'following' behavior for a given path, potentially opening it or per
     * `path`: (string) The path to handle.
     * `anchor`: (string|nil) Optional anchor within the path.
 
-##### `require('mkdnflow').paths.formatTemplate(timing, template)` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.formatTemplate(timing, template)`~ -->
+#### `require('mkdnflow').paths.formatTemplate(timing, template)` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.formatTemplate(timing, template)`~ -->
 
 Formats the new file template based on the specified timing (before or after buffer creation). If this is called once with 'before' timing, the output can be captured and passed back in with 'after' timing to perform different substitutions before and after a new buffer is opened.
 
@@ -1142,11 +1136,11 @@ Formats the new file template based on the specified timing (before or after buf
       * `'after'`: Perform the template formatting after the new buffer is opened.
   * `template`: (string|nil) The template to format. If not provided, the default new file template is used.
 
-##### `require('mkdnflow').paths.updateDirs()` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.updateDirs()`~ -->
+#### `require('mkdnflow').paths.updateDirs()` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.updateDirs()`~ -->
 
 Updates the working directory after switching notebooks or notebook folders (if `nvim_wd_heel` is true).
 
-##### `require('mkdnflow').paths.pathType(path, anchor)` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.pathType(path, anchor)`~ -->
+#### `require('mkdnflow').paths.pathType(path, anchor)` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.pathType(path, anchor)`~ -->
 
 Determines the type of the given path (file, directory, URL, etc.).
 
@@ -1154,26 +1148,26 @@ Determines the type of the given path (file, directory, URL, etc.).
     * `path`: (string) The path to check.
     * `anchor`: (string|nil) Optional anchor within the path.
 
-##### `require('mkdnflow').paths.transformPath(path)` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.transformPath(path)`~ -->
+#### `require('mkdnflow').paths.transformPath(path)` <!-- panvimdoc-sub-comment `require('mkdnflow').paths.transformPath(path)`~ -->
 
 Transforms the given path based on the plugin's configuration and transformations.
 
 * **Parameters:**
     * `path`: (string) The path to transform.
 
-#### Buffer navigation
+### Buffer navigation
 
-##### `require('mkdnflow').buffers.goBack()` <!-- panvimdoc-sub-comment `require('mkdnflow').buffers.goBack()`~ -->
+#### `require('mkdnflow').buffers.goBack()` <!-- panvimdoc-sub-comment `require('mkdnflow').buffers.goBack()`~ -->
 
 Navigates to the previously opened buffer.
 
-##### `require('mkdnflow').buffers.goForward()` <!-- panvimdoc-sub-comment `require('mkdnflow').buffers.goForward()`~ -->
+#### `require('mkdnflow').buffers.goForward()` <!-- panvimdoc-sub-comment `require('mkdnflow').buffers.goForward()`~ -->
 
 Navigates to the next buffer in the history.
 
-#### Cursor movement
+### Cursor movement
 
-##### `require('mkdnflow').cursor.goTo(pattern, reverse)` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.goTo(pattern, reverse)`~ -->
+#### `require('mkdnflow').cursor.goTo(pattern, reverse)` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.goTo(pattern, reverse)`~ -->
 
 Moves the cursor to the next or previous occurrence of the specified pattern.
 
@@ -1185,15 +1179,15 @@ Moves the cursor to the next or previous occurrence of the specified pattern.
 require('mkdnflow').cursor.goTo("%[.*%](.*)", false) -- Go to next markdown link
 ```
 
-##### `require('mkdnflow').cursor.toNextLink()` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.toNextLink()`~ -->
+#### `require('mkdnflow').cursor.toNextLink()` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.toNextLink()`~ -->
 
 Moves the cursor to the next link in the file.
 
-##### `require('mkdnflow').cursor.toPrevLink()` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.toPrevLink()`~ -->
+#### `require('mkdnflow').cursor.toPrevLink()` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.toPrevLink()`~ -->
 
 Moves the cursor to the previous link in the file.
 
-##### `require('mkdnflow').cursor.toHeading(anchor_text, reverse)` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.toHeading(anchor_text, reverse)`~ -->
+#### `require('mkdnflow').cursor.toHeading(anchor_text, reverse)` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.toHeading(anchor_text, reverse)`~ -->
 
 Moves the cursor to the specified heading.
 
@@ -1201,7 +1195,7 @@ Moves the cursor to the specified heading.
     * `anchor_text`: (string|nil) The text of the heading to move to, transformed in the way that is expected for an anchor link to a heading. If `nil`, the function will go to the next closest heading.
     * `reverse`: (boolean) If true, search backward.
 
-##### `require('mkdnflow').cursor.toId(id, starting_row)` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.toId(id, starting_row)`~ -->
+#### `require('mkdnflow').cursor.toId(id, starting_row)` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.toId(id, starting_row)`~ -->
 
 Moves the cursor to the specified ID in the file.
 
@@ -1209,25 +1203,25 @@ Moves the cursor to the specified ID in the file.
     * `id`: (string) The Pandoc-style ID attribute (in a tagged span) to move to.
     * `starting_row`: (number|nil) The row to start the search from. If not provided, the cursor row will be used.
 
-#### Cursor-aware manipulations
+### Cursor-aware manipulations
 
-##### `require('mkdnflow').cursor.changeHeadingLevel(change)` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.changeHeadingLevel(change)`~ -->
+#### `require('mkdnflow').cursor.changeHeadingLevel(change)` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.changeHeadingLevel(change)`~ -->
 
 Increases or decreases the importance of the heading under the cursor by adjusting the number of hash symbols.
 
 * **Parameters:**
     * `change`: (string) "increase" to decrease hash symbols (increasing importance), "decrease" to add hash symbols, decreasing importance.
 
-##### `require('mkdnflow').cursor.yankAsAnchorLink(full_path)` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.yankAsAnchorLink(full_path)`~ -->
+#### `require('mkdnflow').cursor.yankAsAnchorLink(full_path)` <!-- panvimdoc-sub-comment `require('mkdnflow').cursor.yankAsAnchorLink(full_path)`~ -->
 
 Yanks the current line as an anchor link, optionally including the full file path depending on the value of the argument.
 
 * **Parameters:**
     * `full_path`: (boolean) If true, includes the full file path.
 
-#### List management
+### List management
 
-##### `require('mkdnflow').lists.newListItem({ carry, above, cursor_moves, mode_after, alt })` <!-- panvimdoc-sub-comment `require('mkdnflow').lists.newListItem({ carry, above, cursor_moves, mode_after, alt })`~ -->
+#### `require('mkdnflow').lists.newListItem({ carry, above, cursor_moves, mode_after, alt })` <!-- panvimdoc-sub-comment `require('mkdnflow').lists.newListItem({ carry, above, cursor_moves, mode_after, alt })`~ -->
 
 Inserts a new list item with various customization options such as whether to carry content from the current line, position the new item above or below, and the editor mode after insertion.
 
@@ -1238,21 +1232,21 @@ Inserts a new list item with various customization options such as whether to ca
     * `mode_after`: (string) The mode to enter after insertion ("i" for insert, "n" for normal).
     * `alt`: (string) Which key(s) to feed if this is called while the cursor is not on a line with a list item. Must be a valid string for the first argument of `vim.api.nvim_feedkeys`.
 
-##### `require('mkdnflow').lists.hasListType(line)` <!-- panvimdoc-sub-comment `require('mkdnflow').lists.hasListType(line)`~ -->
+#### `require('mkdnflow').lists.hasListType(line)` <!-- panvimdoc-sub-comment `require('mkdnflow').lists.hasListType(line)`~ -->
 
 Checks if the given line is part of a list.
 
 * **Parameters:**
     * `line`: (string) The (content of the) line to check. If not provided, the current cursor line will be used.
 
-##### `require('mkdnflow').lists.toggleToDo(opts)` <!-- panvimdoc-sub-comment `require('mkdnflow').lists.toggleToDo(opts)`~ -->
+#### `require('mkdnflow').lists.toggleToDo(opts)` <!-- panvimdoc-sub-comment `require('mkdnflow').lists.toggleToDo(opts)`~ -->
 
 Toggles (rotates) the status of a to-do list item based on the provided options.
 
 > [!WARNING]
 > `require('mkdnflow').lists.toggleToDo(opts)` is deprecated. For convenience, it is now a wrapper function that calls its replacement, `require('mkdnflow').to_do.toggle_to_do(opts)` See [`require('mkdnflow').to_do.core.toggle_to_do()`](#requiremkdnflowto_docoretoggle_to_do) for details.
 
-##### `require('mkdnflow').lists.updateNumbering(opts, offset)` <!-- panvimdoc-sub-comment `require('mkdnflow').lists.updateNumbering(opts, offset)`~ -->
+#### `require('mkdnflow').lists.updateNumbering(opts, offset)` <!-- panvimdoc-sub-comment `require('mkdnflow').lists.updateNumbering(opts, offset)`~ -->
 
 Updates the numbering of the list items in the current list.
 
@@ -1261,51 +1255,51 @@ Updates the numbering of the list items in the current list.
         * `opts[1]`: (integer) The number to start the current ordered list with.
     * `offset`: (number) The offset to start numbering from. Defaults to `0` if not provided.
 
-#### To-do list management
+### To-do list management
 
-##### `require('mkdnflow').to_do.toggle_to_do()` <!-- panvimdoc-sub-comment `require('mkdnflow').to_do.toggle_to_do()`~ -->
+#### `require('mkdnflow').to_do.toggle_to_do()` <!-- panvimdoc-sub-comment `require('mkdnflow').to_do.toggle_to_do()`~ -->
 
 Toggle (rotate) to-do statuses for a to-do item under the cursor.
 
-##### `require('mkdnflow').to_do.get_to_do_item(line_nr)` <!-- panvimdoc-sub-comment `require('mkdnflow').to_do.get_to_do_item(line_nr)`~ -->
+#### `require('mkdnflow').to_do.get_to_do_item(line_nr)` <!-- panvimdoc-sub-comment `require('mkdnflow').to_do.get_to_do_item(line_nr)`~ -->
 
 Retrieves a to-do item from the specified line number.
 
 * **Parameters:**
     * `line_nr`: (number) The line number to retrieve the to-do item from. If not provided, defaults to the cursor line number.
 
-##### `require('mkdnflow').to_do.get_to_do_list(line_nr)` <!-- panvimdoc-sub-comment `require('mkdnflow').to_do.get_to_do_list(line_nr)`~ -->
+#### `require('mkdnflow').to_do.get_to_do_list(line_nr)` <!-- panvimdoc-sub-comment `require('mkdnflow').to_do.get_to_do_list(line_nr)`~ -->
 
 Retrieves the entire to-do list of which the specified line number is an item/member.
 
 * **Parameters:**
     * `line_nr`: (number) The line number to retrieve the to-do list from. If not provided, defaults to the cursor line number.
 
-##### `require('mkdnflow').to_do.hl.init()` <!-- panvimdoc-sub-comment `require('mkdnflow').to_do.hl.init()`~ -->
+#### `require('mkdnflow').to_do.hl.init()` <!-- panvimdoc-sub-comment `require('mkdnflow').to_do.hl.init()`~ -->
 
 Initializes highlighting for to-do items. If highlighting is enabled in your configuration, you should never need to use this.
 
-#### Table management
+### Table management
 
-##### `require('mkdnflow').tables.formatTable()` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.formatTable()`~ -->
+#### `require('mkdnflow').tables.formatTable()` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.formatTable()`~ -->
 
 Formats the current table, ensuring proper alignment and spacing.
 
-##### `require('mkdnflow').tables.addRow(offset)` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.addRow(offset)`~ -->
+#### `require('mkdnflow').tables.addRow(offset)` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.addRow(offset)`~ -->
 
 Adds a new row to the table at the specified offset.
 
 * **Parameters:**
     * `offset`: (number) The position (relative to the current cursor row) in which to insert the new row. Defaults to `0`, in which case a new row is added beneath the current cursor row. An offset of `-1` will result in a row being inserted _above_ the current cursor row; an offset of `1` will result in a row being inserted after the row following the current cursor row; etc.
 
-##### `require('mkdnflow').tables.addCol(offset)` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.addCol(offset)`~ -->
+#### `require('mkdnflow').tables.addCol(offset)` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.addCol(offset)`~ -->
 
 Adds a new column to the table at the specified offset.
 
 * **Parameters:**
     * `offset`: (number) The position (relative to the table column the cursor is currently in) to insert the new column. Defaults to `0`, in which case a new column is added after the current cursor table column. An offset of `-1` will result in a column being inserted _before_ the current cursor table column; an offset of `1` will result in a column being inserted after the column following the current cursor table column; etc.
 
-##### `require('mkdnflow').tables.newTable(opts)` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.newTable(opts)`~ -->
+#### `require('mkdnflow').tables.newTable(opts)` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.newTable(opts)`~ -->
 
 Creates a new table with the specified options.
 
@@ -1317,7 +1311,7 @@ Creates a new table with the specified options.
             * `'noh'` or `'noheader'`: Don't include a header row
             * `nil`: Include a header
 
-##### `require('mkdnflow').tables.isPartOfTable(text, linenr)` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.isPartOfTable(text, linenr)`~ -->
+#### `require('mkdnflow').tables.isPartOfTable(text, linenr)` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.isPartOfTable(text, linenr)`~ -->
 
 Guesses as to whether the specified text is part of a table.
 
@@ -1325,7 +1319,7 @@ Guesses as to whether the specified text is part of a table.
     * `text`: (string) The content to check for table membership.
     * `linenr`: (number) The line number corresponding to the text passed in.
 
-##### `require('mkdnflow').tables.moveToCell(row_offset, cell_offset)` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.moveToCell(row_offset, cell_offset)`~ -->
+#### `require('mkdnflow').tables.moveToCell(row_offset, cell_offset)` <!-- panvimdoc-sub-comment `require('mkdnflow').tables.moveToCell(row_offset, cell_offset)`~ -->
 
 Moves the cursor to the specified cell in the table.
 
@@ -1333,30 +1327,30 @@ Moves the cursor to the specified cell in the table.
     * `row_offset`: (number) The difference between the current row and the target row. `0`, for instance, will target the current row.
     * `cell_offset`: (number) The difference between the current table column and the target table column. `0`, for instance, will target the current column.
 
-#### Folds
+### Folds
 
-##### `require('mkdnflow').folds.getHeadingLevel(line)` <!-- panvimdoc-sub-comment `require('mkdnflow').folds.getHeadingLevel(line)`~ -->
+#### `require('mkdnflow').folds.getHeadingLevel(line)` <!-- panvimdoc-sub-comment `require('mkdnflow').folds.getHeadingLevel(line)`~ -->
 
 Gets the heading level of the specified line.
 
 * **Parameters:**
     * `line`: (string) The line content to get the heading level for. Required.
 
-##### `require('mkdnflow').folds.foldSection()` <!-- panvimdoc-sub-comment `require('mkdnflow').folds.foldSection()`~ -->
+#### `require('mkdnflow').folds.foldSection()` <!-- panvimdoc-sub-comment `require('mkdnflow').folds.foldSection()`~ -->
 
 Folds the current section based on markdown headings.
 
-##### `require('mkdnflow').folds.unfoldSection()` <!-- panvimdoc-sub-comment `require('mkdnflow').folds.unfoldSection()`~ -->
+#### `require('mkdnflow').folds.unfoldSection()` <!-- panvimdoc-sub-comment `require('mkdnflow').folds.unfoldSection()`~ -->
 
 Unfolds the current section.
 
-#### Yaml blocks
+### Yaml blocks
 
-##### `require('mkdnflow').yaml.hasYaml()` <!-- panvimdoc-sub-comment `require('mkdnflow').yaml.hasYaml()`~ -->
+#### `require('mkdnflow').yaml.hasYaml()` <!-- panvimdoc-sub-comment `require('mkdnflow').yaml.hasYaml()`~ -->
 
 Checks if the current buffer contains a YAML header block.
 
-##### `require('mkdnflow').yaml.ingestYamlBlock(start, finish)` <!-- panvimdoc-sub-comment `require('mkdnflow').yaml.ingestYamlBlock(start, finish)`~ -->
+#### `require('mkdnflow').yaml.ingestYamlBlock(start, finish)` <!-- panvimdoc-sub-comment `require('mkdnflow').yaml.ingestYamlBlock(start, finish)`~ -->
 
 Parses and ingests a YAML block from the specified range.
 
@@ -1364,9 +1358,9 @@ Parses and ingests a YAML block from the specified range.
     * `start`: (number) The starting line number.
     * `finish`: (number) The ending line number.
 
-#### Bibliography
+### Bibliography
 
-##### `require('mkdnflow').bib.handleCitation(citation)` <!-- panvimdoc-sub-comment `require('mkdnflow').bib.handleCitation(citation)`~ -->
+#### `require('mkdnflow').bib.handleCitation(citation)` <!-- panvimdoc-sub-comment `require('mkdnflow').bib.handleCitation(citation)`~ -->
 
 Handles a citation, potentially linking to a bibliography entry or external source.
 
