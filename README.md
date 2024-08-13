@@ -13,16 +13,17 @@
 
 1. [🚀 Introduction](#-introduction)
 2. [✨ Features](#-features)
-3. [💾 Installation and configuration](#-installation-and-configuration)
+3. [💾 Installation](#-installation)
+4. [⚙️  Configuration](#%EF%B8%8F--configuration)
     1. [⚡ Quick Start](#-quick-start)
-    2. [⚙️  Advanced configuration](#%EF%B8%8F--advanced-configuration)
+    2. [⚙️🔧 Advanced configuration](#%EF%B8%8F--advanced-configuration)
         1. [🎨 Configuration options](#-configuration-options)
         2. [🔮 Completion setup](#-completion-setup)
-4. [🛠️ Commands & mappings](#%EF%B8%8F-commands--mappings)
-5. [🔌 API](#-api)
-6. [🤝 Contributing](#-contributing)
-7. [🔢 Version information](#-version-information)
-8. [🔗 Related projects](#-related-projects)
+5. [🛠️ Commands & mappings](#%EF%B8%8F-commands--mappings)
+6. [🔌 API](#-api)
+7. [🤝 Contributing](#-contributing)
+8. [🔢 Version information](#-version-information)
+9. [🔗 Related projects](#-related-projects)
 
 <!-- panvimdoc-ignore-end -->
 
@@ -115,7 +116,7 @@ Mkdnflow is designed for the *fluent* navigation and management of [markdown](ht
 
 ### ⚙️ Configurability
 
-## 💾 Installation and configuration
+## 💾 Installation
 
 Install Mkdnflow using your preferred package manager for Neovim. Once installed, Mkdnflow is configured and initialized using a setup function.
 
@@ -157,6 +158,7 @@ EOF
 
 </details>
 
+## ⚙️ Configuration
 ### ⚡ Quick start
 
 Mkdnflow is configured and initialized using a setup function. To use the [default settings](#-default-settings), pass no arguments or an empty table to the setup function:
@@ -170,7 +172,7 @@ Mkdnflow is configured and initialized using a setup function. To use the [defau
 }
 ```
 
-### ⚙️  Advanced configuration
+### ⚙️🔧 Advanced configuration
 
 Most features are highly configurable. Study the default config first and read the documentation for the configuration options [below](#-configuration-options) or in the help files.
 
