@@ -8,6 +8,7 @@
 <p align=center><img src="https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white"> <img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white"> <img src="https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white"></p>
 
 <!-- panvimdoc-ignore-start -->
+
 ### Contents
 
 1. [🚀 Introduction](#-introduction)
@@ -23,6 +24,7 @@
 5. [🤝 Contributing](#-contributing)
 6. [🔢 Version information](#-version-information)
 7. [🔗 Related projects](#-related-projects)
+
 <!-- panvimdoc-ignore-end -->
 
 ## 🚀 Introduction
