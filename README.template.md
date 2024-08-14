@@ -14,9 +14,9 @@
 1. [🚀 Introduction](#-introduction)
 2. [✨ Features](#-features)
 3. [💾 Installation](#-installation)
-4. [⚙️  Configuration](#%EF%B8%8F--configuration)
+4. [⚙️  Configuration](#%EF%B8%8F-configuration)
     1. [⚡ Quick Start](#-quick-start)
-    2. [⚙️🔧 Advanced configuration](#%EF%B8%8F--advanced-configuration)
+    2. [🔧 Advanced configuration](#-advanced-configuration)
         1. [🎨 Configuration options](#-configuration-options)
         2. [🔮 Completion setup](#-completion-setup)
 5. [🛠️ Commands & mappings](#%EF%B8%8F-commands--mappings)
@@ -29,7 +29,7 @@
 
 ## 🚀 Introduction
 
-Mkdnflow is designed for the *fluent* navigation and management of [markdown](https://markdownguide.org) documents and document collections (notebooks, wikis, etc). It features numerous convenience functions that make it easier to work within raw markdown documents or document collections: [link and reference handling](#-link-and-reference-handling), [navigation](#-navigation), [table support](#-table-support), [list](#-list-support) and [to-do list](#-to-do-list-support) support, [file management](#-file-management), [section folding](#-section-folding), and more. Use it for notetaking, personal knowledge management, static website building, and more. Most features are [highly tweakable](#-configuration).
+Mkdnflow is designed for the *fluent* navigation and management of [markdown](https://markdownguide.org) documents and document collections (notebooks, wikis, etc). It features numerous convenience functions that make it easier to work within raw markdown documents or document collections: [link and reference handling](#-link-and-reference-handling), [navigation](#-navigation), [table support](#-table-support), [list](#-list-support) and [to-do list](#-to-do-list-support) support, [file management](#-file-management), [section folding](#-section-folding), and more. Use it for notetaking, personal knowledge management, static website building, and more. Most features are [highly tweakable](#%EF%B8%8F-configuration).
 
 ## ✨ Features
 
@@ -172,7 +172,7 @@ Mkdnflow is configured and initialized using a setup function. To use the [defau
 }
 ```
 
-### ⚙️🔧 Advanced configuration
+### 🔧 Advanced configuration
 
 Most features are highly configurable. Study the default config first and read the documentation for the configuration options [below](#-configuration-options) or in the help files.
 
@@ -1023,7 +1023,7 @@ Below are descriptions of the user commands defined by Mkdnflow. For the default
 
 #### `require('mkdnflow').setup(config)` <!-- panvimdoc-sub-comment `require('mkdnflow').setup(config)`~ -->
 
-Initializes the plugin with the provided configuration. See [⚙️  Advanced configuration](#%EF%B8%8F--advanced-configuration). If called with an empty table, the default configuration is used.
+Initializes the plugin with the provided configuration. See [⚙️  Advanced configuration](#-advanced-configuration). If called with an empty table, the default configuration is used.
 
 * **Parameters**:
     * `config`: (table) Configuration table containing various settings such as filetypes, modules, mappings, and more.
@@ -1371,6 +1371,29 @@ Handles a citation, potentially linking to a bibliography entry or external sour
 
 ## 🤝 Contributing
 
-## 🔢 Version information
+See [CONTRIBUTING.md](https://github.com/jakewvincent/mkdnflow.nvim/blob/main/CONTRIBUTING.md)
 
 ## 🔗 Related projects
+
+### Competition
+
+* [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)
+* [wiki.vim](https://github.com/lervag/wiki.vim/)
+* [Neorg](https://github.com/nvim-neorg/neorg)
+* [markdown.nvim](https://github.com/tadmccorkle/markdown.nvim)
+* [Vimwiki](https://github.com/vimwiki/vimwiki)
+* [follow-md-links.nvim](https://github.com/jghauser/follow-md-links.nvim)
+
+### Complementary plugins
+
+* [Obsidian.md](https://obsidian.md)
+* [clipboard-image.nvim](https://github.com/ekickx/clipboard-image.nvim)
+* [mdeval.nvim](https://github.com/jubnzv/mdeval.nvim)
+* In-editor "rendering"
+    * [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+    * [markview.nvim](https://github.com/OXY2DEV/markview.nvim)
+* Preview plugins
+    * [Markdown Preview for (Neo)vim](https://github.com/iamcco/markdown-preview.nvim)
+    * [nvim-markdown-preview](https://github.com/davidgranstrom/nvim-markdown-preview)
+    * [glow.nvim](https://github.com/npxbr/glow.nvim)
+    * [auto-pandoc.nvim](https://github.com/jghauser/auto-pandoc.nvim)
