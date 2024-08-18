@@ -99,7 +99,7 @@ local resolve_notebook_path = function(path, sub_home_var)
             derived_path = string.gsub(derived_path, '^~\\', vim.loop.os_homedir() .. '\\')
         end
     end
-    -- Decide what to pass to internal_open function
+    -- Decide what to pass to vim_open function
     if derived_path:match('^~/') or derived_path:match('^/') or derived_path:match('^%u:\\') then
         derived_path = sub_home_var and string.gsub(derived_path, '^~/', '$HOME/') or derived_path
     elseif perspective.priority == 'root' and root_dir then
@@ -227,7 +227,7 @@ enter_internal_path = function(path)
     }
     vim.ui.input(input_opts, function(response)
         if response ~= nil and response ~= path .. sep then
-            internal_open(response)
+            vim_open(response)
             vim.api.nvim_command('normal! :')
         end
     end)
@@ -457,7 +457,7 @@ local truncate_path = function(oldpath, newpath)
             char = char + 1
         end
     end
-    if char > last_slash then
+    if last_slash and char > last_slash then
         difference = string.sub(newpath, last_slash)
     else
         difference = string.sub(newpath, char)
@@ -508,16 +508,13 @@ M.moveSource = function()
         vim.api.nvim_set_option('cmdheight', rows_needed)
         vim.ui.input({ prompt = prompt }, function(response)
             if response == 'y' then
-                if this_os:match('Windows') then
-                    os.execute('move "' .. derived_source .. '" "' .. derived_goal .. '"')
-                else
-                    os.execute(
-                        'mv '
-                            .. utils.escapeChars(derived_source)
-                            .. ' '
-                            .. utils.escapeChars(derived_goal)
-                    )
-                end
+                local command = string.format(
+                    '%s %s %s',
+                    this_os:match('Windows') and 'move' or 'mv',
+                    vim.fn.shellescape(derived_source),
+                    vim.fn.shellescape(derived_goal)
+                )
+                os.execute(command)
                 -- Change the link content
                 vim.api.nvim_buf_set_text(
                     0,
@@ -586,7 +583,12 @@ M.moveSource = function()
                 if goal_exists then -- If the goal location already exists, abort
                     vim.api.nvim_command('normal! :')
                     vim.api.nvim_echo(
-                        { { "⬇️  '" .. location .. "' already exists! Aborting.", 'WarningMsg' } },
+                        {
+                            {
+                                "⬇️  '" .. location .. "' already exists! Aborting.",
+                                'WarningMsg',
+                            },
+                        },
                         true,
                         {}
                     )
@@ -635,16 +637,12 @@ M.moveSource = function()
                 else -- Otherwise, the file we're trying to move must not exist
                     -- Clear the prompt & send a warning
                     vim.api.nvim_command('normal! :')
-                    vim.api.nvim_echo(
+                    vim.api.nvim_echo({
                         {
-                            {
-                                '⬇️  ' .. derived_source .. " doesn't seem to exist! Aborting.",
-                                'WarningMsg',
-                            },
+                            '⬇️  ' .. derived_source .. " doesn't seem to exist! Aborting.",
+                            'WarningMsg',
                         },
-                        true,
-                        {}
-                    )
+                    }, true, {})
                 end
             end
         end)
