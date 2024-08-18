@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.3](https://github.com/jakewvincent/mkdnflow.nvim/compare/v1.2.2...v1.2.3) (2024-08-18)
+
+
+### Bug Fixes
+
+* Check for nil ([f04c36b](https://github.com/jakewvincent/mkdnflow.nvim/commit/f04c36b499630d7aee58ff7470e35792661baed8))
+* Use native `shellescape` to escape characters ([2cc37ed](https://github.com/jakewvincent/mkdnflow.nvim/commit/2cc37edbc0d36ad0447ab9d62244c13b0a228dc5))
+
 ## [1.2.2](https://github.com/jakewvincent/mkdnflow.nvim/compare/v1.2.1...v1.2.2) (2024-07-29)
 
 
