@@ -3,74 +3,43 @@
 
 echo "  Running post-commit hook..."
 
-# Get the current branch
-current_branch=$(git rev-parse --abbrev-ref HEAD)
-
-#################################################
-### Convert any new or modified images to png ###
-#################################################
-
-if [ "$current_branch" = "media" ]; then
-    echo "    ⤷ Checking for modified xcf (GIMP) files."
-    # Run xcf-to-png conversion script
-    scripts/xcf_to_png.sh
-
-    # See if any unstaged changes to png files or any untracked png files
-    unstaged_png=$(git ls-files --modified --exclude-standard "*.png")
-    untracked_png=$(git ls-files --others --exclude-standard "*.png")
-
-    # Stage and commit any unstaged/untracked png changes/files
-    if [ -n "$unstaged_png" ] || [ -n "$untracked_png" ]; then
-        git add *.png
-        echo "       ∙ Staged png files"
-        # Double check that there are staged/newly tracked files
-        if git diff --cached --name-only | grep -q "\.png$"; then
-            # Commit the changes
-            git commit -m "chore: Auto-convert .xcf files to .png."
-            echo "       ∙ Committed converted .png files."
-        fi
-    fi
-fi
-
 ###################################
 ### Compile README if necessary ###
 ###################################
 
-if [ "$current_branch" != "media" ]; then
-    echo "    ⤷ Checking if README needs regenerating..."
+echo "    ⤷ Checking if README needs regenerating..."
 
-    # Get the last modification time of the README and the README template
-    README_MOD_TIME=$(git log -1 --format=%ct README.md 2>/dev/null)
-    TEMPLATE_MOD_TIME=$(git log -1 --format=%ct README.template.md 2>/dev/null)
+# Get the last modification time of the README and the README template
+README_MOD_TIME=$(git log -1 --format=%ct README.md 2>/dev/null)
+TEMPLATE_MOD_TIME=$(git log -1 --format=%ct README.template.md 2>/dev/null)
 
-    # Check if any changes to CSV files or to the README template in that range
-    CHANGES=$(git diff-tree --no-commit-id --name-only -r HEAD -- './data/*.csv' 'README.template.md')
+# Check if any changes to CSV files or to the README template in that range
+CHANGES=$(git diff-tree --no-commit-id --name-only -r HEAD -- './data/*.csv' 'README.template.md')
 
-    if [ -n "$CHANGES" ] || [ "$TEMPLATE_MOD_TIME" -gt "$README_MOD_TIME" ]; then
-        echo "       ∙ Changes detected to README template or CSV data. Regenerating README..."
-        
-        # Run the script to create README from template
-        python3 ./scripts/create_readme_from_template.py
-        
-        # Check if README.md has unstaged changes
-        if git diff --quiet README.md; then
-            echo "       ∙ No changes to README."
-        else
-            echo "       ∙ README has been updated. Staging and committing changes..."
-            git add README.md
-            git commit -m "chore: Auto-update README.md based on CSV changes"
-            
-            # If the commit was successful, inform the user
-            if [ $? -eq 0 ]; then
-                echo "       ∙ Committed updated README."
-            else
-                echo "       ∙ Failed to commit README. Review and commit manually."
-                exit 1
-            fi
-        fi
+if [ -n "$CHANGES" ] || [ "$TEMPLATE_MOD_TIME" -gt "$README_MOD_TIME" ]; then
+    echo "       ∙ Changes detected to README template or CSV data. Regenerating README..."
+    
+    # Run the script to create README from template
+    python3 ./scripts/create_readme_from_template.py
+    
+    # Check if README.md has unstaged changes
+    if git diff --quiet README.md; then
+        echo "       ∙ No changes to README."
     else
-        echo "       ∙ No changes to README template or CSV data."
+        echo "       ∙ README has been updated. Staging and committing changes..."
+        git add README.md
+        git commit -m "chore: Auto-update README.md based on CSV changes"
+        
+        # If the commit was successful, inform the user
+        if [ $? -eq 0 ]; then
+            echo "       ∙ Committed updated README."
+        else
+            echo "       ∙ Failed to commit README. Review and commit manually."
+            exit 1
+        fi
     fi
+else
+    echo "       ∙ No changes to README template or CSV data."
 fi
 
 echo "    ⤷ Post-commit tasks completed."
