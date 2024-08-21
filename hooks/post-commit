@@ -1,4 +1,4 @@
-# .git/hooks/post-commit
+# .git/hooks/post-commit -> hooks/post-commit
 #!/bin/bash
 
 echo "  Running post-commit hook..."
