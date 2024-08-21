@@ -114,8 +114,6 @@ Mkdnflow is designed for the *fluent* navigation and management of [markdown](ht
 
 * [ ] Custom(izable) highlighting for to-do status markers and content
 
-### ⚙️ Configurability
-
 ## 💾 Installation
 
 Install Mkdnflow using your preferred package manager for Neovim. Once installed, Mkdnflow is configured and initialized using a setup function.
