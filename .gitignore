@@ -1,7 +1,4 @@
 # Ignore tests
-lua/mkdnflow/tests.lua
-plugin/tests.lua
-doc/tags
 assets/logo/*.xdv
 assets/logo/*.synctex.gz
 assets/logo/*.fls
