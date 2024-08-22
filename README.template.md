@@ -16,7 +16,7 @@
 3. [💾 Installation](#-installation)
 4. [⚙️  Configuration](#%EF%B8%8F-configuration)
     1. [⚡ Quick Start](#-quick-start)
-    2. [🔧 Advanced configuration](#-advanced-configuration)
+    2. [🔧 Advanced configuration](#-advanced-configuration-and-sample-recipes)
         1. [🎨 Configuration options](#-configuration-options)
         2. [🔮 Completion setup](#-completion-setup)
 5. [🛠️ Commands & mappings](#%EF%B8%8F-commands--mappings)
@@ -176,7 +176,7 @@ Mkdnflow is configured and initialized using a setup function. To use the [defau
 }
 ```
 
-### 🔧 Advanced configuration
+### 🔧 Advanced configuration and sample recipes
 
 Most features are highly configurable. Study the default config first and read the documentation for the configuration options [below](#-configuration-options) or in the help files.
 
@@ -1027,7 +1027,7 @@ Below are descriptions of the user commands defined by Mkdnflow. For the default
 
 #### `require('mkdnflow').setup(config)` <!-- panvimdoc-sub-comment `require('mkdnflow').setup(config)`~ -->
 
-Initializes the plugin with the provided configuration. See [⚙️  Advanced configuration](#-advanced-configuration). If called with an empty table, the default configuration is used.
+Initializes the plugin with the provided configuration. See [⚙️  Advanced configuration](#-advanced-configuration-and-sample-recipes). If called with an empty table, the default configuration is used.
 
 * **Parameters**:
     * `config`: (table) Configuration table containing various settings such as filetypes, modules, mappings, and more.
