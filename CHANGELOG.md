@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/jakewvincent/mkdnflow.nvim/compare/v1.2.3...v1.2.4) (2024-08-25)
+
+
+### Bug Fixes
+
+* Check first line for bib entry too ([4638b05](https://github.com/jakewvincent/mkdnflow.nvim/commit/4638b05c8ad7a54cffea1767d1f36c939394489d))
+
 ## [1.2.3](https://github.com/jakewvincent/mkdnflow.nvim/compare/v1.2.2...v1.2.3) (2024-08-18)
 
 
