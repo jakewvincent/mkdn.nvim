@@ -83,7 +83,13 @@ local search_bib_file = function(path, citekey)
     if bib_file then
         local text = bib_file:read('*a')
         if text then
-            local start, _ = string.find(text, '\n%s?@[%a]-{%s?' .. utils.luaEscape(citekey))
+            -- Check first at the beginning of the file text; then at the beginning of each line
+            local start, _ = string.find(text, "^%s?@[%a]-{%s?" .. utils.luaEscape(citekey))
+            if not start then
+                start, _ = string.find(text, '\n%s?@[%a]-{%s?' .. utils.luaEscape(citekey))
+            end
+
+            -- If we have a match, get the entry based on bracket matching
             if start then
                 local match = text:match('%b{}', start)
                 return match
