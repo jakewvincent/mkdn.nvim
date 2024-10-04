@@ -42,6 +42,12 @@ Mkdnflow is designed for the *fluent* navigation and management of [markdown](ht
 
 ![](https://raw.githubusercontent.com/jakewvincent/mkdnflow.nvim/media/assets/gif/in_buffer_nav/in_buffer_nav.gif)
 
+
+<div style="width: 100%;">
+    <img src="https://raw.githubusercontent.com/jakewvincent/mkdnflow.nvim/media/assets/gif/in_buffer_nav/in_buffer_nav.svg" style="width: 100%;">
+</div>
+
+
 #### Within-notebook navigation
 
 * [x] Open Markdown files in the current window
