@@ -1,0 +1,14 @@
+<svg fill="none" viewBox="0 0 914 294" width="914" height="294" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <style>
+            .rounded-gif {
+                border-radius: 4px;
+            }
+        </style>
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <div>
+                <img class="rounded-gif" src="https://raw.githubusercontent.com/jakewvincent/mkdnflow.nvim/media/assets/gif/in_buffer_nav/in_buffer_nav.gif" />
+            </div>
+        </div>
+    </foreignObject>
+</svg>
